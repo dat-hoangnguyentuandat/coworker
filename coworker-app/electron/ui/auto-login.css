@@ -1,0 +1,102 @@
+:root {
+  --text: #24231f;
+  --muted: #77766f;
+  --line: #d9d8d2;
+  --line-soft: #e7e6e0;
+  --soft: #f7f7f4;
+  --card: #ffffff;
+  --accent: #2c4337;
+  --danger: #a34035;
+  --ok: #1d6846;
+}
+html[data-theme="dark"] {
+  --text: #eef5ef;
+  --muted: #b8c4ba;
+  --line: #425047;
+  --line-soft: #2d3830;
+  --soft: #151d18;
+  --card: #1c251f;
+  --accent: #91d4a7;
+  --danger: #f0a69b;
+  --ok: #a7dfb6;
+}
+* { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: #66756a transparent; }
+*::-webkit-scrollbar { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { border-radius: 99px; background: #66756a; }
+*::-webkit-scrollbar-thumb:hover { background: #8ba091; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; font-family: "Segoe UI", sans-serif; color: var(--text); background: transparent; }
+.dialog {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 18px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+.dialog-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; -webkit-app-region: drag; }
+.dialog-head .icon-btn { -webkit-app-region: no-drag; }
+h2 { margin: 0; font-size: 16px; font-weight: 650; }
+h3 { margin: 0; font-size: 12px; font-weight: 650; letter-spacing: .3px; color: var(--muted); text-transform: uppercase; }
+.icon-btn { width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 8px; color: var(--muted); background: transparent; font-size: 13px; cursor: pointer; }
+.icon-btn:hover { color: var(--text); background: var(--line-soft); }
+.panel { margin-bottom: 16px; padding: 14px; border: 1px solid var(--line); border-radius: 11px; background: var(--card); }
+.panel:last-child { margin-bottom: 0; }
+.panel-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.count { min-width: 20px; padding: 1px 7px; border-radius: 999px; background: var(--soft); color: var(--muted); font-size: 11px; text-align: center; }
+.row { display: flex; gap: 8px; margin-top: 8px; }
+.btn { min-height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); background: var(--card); font: 600 12px "Segoe UI", sans-serif; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { color: #fff; background: #2c4337; border-color: #283d32; }
+html[data-theme="dark"] .btn.primary { color: #102116; background: #91d4a7; border-color: #91d4a7; }
+.btn.danger { color: var(--danger); }
+.import-box summary { margin-bottom: 8px; color: var(--muted); font-size: 12px; cursor: pointer; user-select: none; }
+textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); background: var(--soft); font: 12px Consolas, "Cascadia Code", monospace; resize: vertical; }
+textarea:focus, select:focus { outline: 1.5px solid var(--accent); outline-offset: -1px; }
+ul { list-style: none; margin: 0; padding: 0; }
+.empty { padding: 10px 2px; color: var(--muted); font-size: 12px; }
+.account-item, .queue-item, .result-item { display: flex; align-items: center; gap: 8px; padding: 8px 6px; border-bottom: 1px solid var(--line-soft); font-size: 12.5px; }
+.account-item:last-child, .queue-item:last-child, .result-item:last-child { border-bottom: 0; }
+.email { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tag { flex: 0 0 auto; padding: 1px 6px; border-radius: 5px; background: var(--soft); color: var(--muted); font-size: 10.5px; font-weight: 600; }
+.tag.ok { color: var(--ok); }
+.tag.err { color: var(--danger); }
+.tag.go { color: #8ab4f8; border: 1px solid #8ab4f8; }
+.btn.google { border: 1px solid #8ab4f8; color: #8ab4f8; }
+select { height: 30px; max-width: 130px; padding: 0 6px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); background: var(--soft); font-size: 11.5px; }
+.mini-btn { flex: 0 0 auto; height: 28px; padding: 0 9px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: transparent; font: 600 11px "Segoe UI", sans-serif; cursor: pointer; }
+.mini-btn:hover { color: var(--text); background: var(--soft); }
+.mini-btn.go { color: var(--ok); border-color: var(--ok); }
+.mini-btn.del { color: var(--danger); }
+.queue-item .email { font-weight: 600; }
+.step { color: var(--muted); font-size: 11px; }
+.result-item .detail { color: var(--muted); font-size: 11px; }
+.spin { display: inline-block; width: 11px; height: 11px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+html[data-theme="dark"] :focus-visible { outline: 2px solid #9ee2b2; outline-offset: 2px; }
+html[data-theme="dark"] .card { box-shadow: 0 20px 60px rgba(0, 0, 0, .42); }
+html[data-theme="dark"] .panel { background: #18211b; }
+html[data-theme="dark"] .btn, html[data-theme="dark"] select, html[data-theme="dark"] textarea { color: var(--text); background: #151d18; border-color: var(--line); }
+html[data-theme="dark"] option { color: var(--text); background: #1c251f; }
+html[data-theme="dark"] .btn:hover, html[data-theme="dark"] .mini-btn:hover { color: #f7fbf7; border-color: #6b8d76; background: #26352b; }
+html[data-theme="dark"] .btn.primary:hover { color: #0b1910; background: #a8e5b9; border-color: #a8e5b9; }
+html[data-theme="dark"] textarea:focus, html[data-theme="dark"] select:focus { outline-color: rgba(145, 212, 167, .8); border-color: #91d4a7; }
+html[data-theme="dark"] .account-item:hover, html[data-theme="dark"] .queue-item:hover, html[data-theme="dark"] .result-item:hover { background: #202b23; }
+html[data-theme="dark"] .tag { color: #becabe; background: #263229; }
+html[data-theme="dark"] .tag.ok, html[data-theme="dark"] .mini-btn.go { color: #a7dfb6; border-color: #4c7658; }
+html[data-theme="dark"] .tag.err, html[data-theme="dark"] .mini-btn.del { color: var(--danger); }
+html[data-theme="dark"] .tag.go, html[data-theme="dark"] .btn.google { color: #a9caff; border-color: #6386bd; }
+html[data-theme="dark"] .queue-item, html[data-theme="dark"] .result-item, html[data-theme="dark"] .account-item { border-color: var(--line-soft); }

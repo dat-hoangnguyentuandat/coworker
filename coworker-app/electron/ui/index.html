@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'">
+  <title>Coworker</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Điều hướng Coworker">
+      <header class="sidebar-brand"><span>Coworker</span><button class="icon-button sidebar-collapse" aria-label="Thu gọn thanh bên"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 4v16"/></svg></button></header>
+
+      <button id="create-task" class="new-task-button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Task mới</span><kbd>Ctrl N</kbd></button>
+      <button id="choose" class="sidebar-action"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h7l2 2h9v10H3z"/><path d="M3 6.5V5h7l2 2"/></svg><span>Thêm workspace</span></button>
+
+      <div class="sidebar-section workspace-section"><span>Workspace</span><div class="sidebar-select-row"><select id="workspace-select" disabled><option>Chưa chọn</option></select></div><div class="sidebar-entity-actions"><button id="rename-workspace" class="icon-button" aria-label="Đổi tên workspace" title="Đổi tên workspace" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M13.5 6.5l3 3"/></svg><span>Đổi tên</span></button><button id="remove-workspace" class="icon-button danger-icon" aria-label="Xóa workspace" title="Xóa workspace" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 11v6M14 11v6M9 7l1-2h4l1 2M7 7l1 14h8l1-14"/></svg><span>Gỡ khỏi app</span></button></div></div>
+      <div class="sidebar-section task-section"><div class="section-label-row"><span>Tasks</span><span id="task-count" class="count-chip">0</span></div><select id="task-select" disabled><option>Chưa có task</option></select></div>
+      <div class="sidebar-task-meta"><span>ID</span><code id="task-id">—</code><button id="copy-task" class="icon-button" aria-label="Sao chép task ID" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0 1 1v10a1 1 0 0 0 1 1h3"/></svg></button></div><div class="sidebar-entity-actions task-actions"><button id="rename-task" class="icon-button" aria-label="Đổi tên task" title="Đổi tên task" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M13.5 6.5l3 3"/></svg><span>Đổi tên</span></button><button id="delete-task" class="icon-button danger-icon" aria-label="Xóa task" title="Xóa task" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 11v6M14 11v6M9 7l1-2h4l1 2M7 7l1 14h8l1-14"/></svg><span>Đóng tác vụ</span></button></div>
+
+      <nav class="nav-list" aria-label="Các mục">
+        <button class="nav-item active" data-view="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg><span>Tổng quan</span></button>
+        <button class="nav-item" data-view="files"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h7l2 2h9v10H3z"/><path d="M3 6.5V5h7l2 2"/></svg><span>Tệp</span></button>
+        <button class="nav-item" data-view="changes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="4" r="2"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 6v12M18 8v3a5 5 0 0 1-5 5H6"/></svg><span>Thay đổi</span></button>
+        <button class="nav-item" data-view="terminal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 6 6 6-6 6M12 18h8"/></svg><span>Terminal</span></button>
+        <button class="nav-item" data-view="activity"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Hoạt động</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-view="connections"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></svg><span>Kết nối</span></button>
+        <button class="nav-item" data-view="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-4l-.4 3a7 7 0 0 0-1.7 1L6 6l-2 3.5L6 11a7 7 0 0 0 0 2l-2 1.5L6 18l2.4-1a7 7 0 0 0 1.7 1l.4 3h4l.4-3a7 7 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5a7 7 0 0 0 .1-1Z"/></svg><span>Cài đặt</span></button>
+        <div class="sidebar-server-row"><span id="status-dot" class="status-dot"></span><span id="status">MCP đã tắt</span><button id="toggle" class="button primary" disabled>Bật</button></div>
+      </div>
+    </aside>
+
+    <main id="main-content" class="main-area">
+      <header class="main-toolbar">
+        <div class="breadcrumb"><span id="toolbar-workspace">Workspace</span><span class="breadcrumb-separator">/</span><strong id="toolbar-task">Task mới</strong></div>
+        <div class="chat-profile-controls">
+          <select id="chat-profile-select" class="chat-profile-select" aria-label="ChatGPT profile"></select>
+          <button id="autologin-chat-profiles" class="icon-button" aria-label="Đăng nhập tự động" title="Đăng nhập tự động các tài khoản ChatGPT"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11A8 8 0 0 0 6.3 6.3L4 8.5"/><path d="M4 4v4.5h4.5"/><path d="M4 13a8 8 0 0 0 13.7 4.7L20 15.5"/><path d="M20 20v-4.5h-4.5"/></svg></button>
+          <button id="rename-chat-profile" class="icon-button" aria-label="Đổi tên profile ChatGPT" title="Đổi tên profile ChatGPT"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M13.5 6.5l3 3"/></svg></button>
+          <button id="add-chat-profile" class="icon-button" aria-label="Thêm profile ChatGPT" title="Thêm profile ChatGPT"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button id="forget-chat-profile" class="icon-button danger-icon" aria-label="Xóa profile ChatGPT" title="Xóa profile ChatGPT"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <div class="toolbar-divider" role="separator"></div>
+        <div class="toolbar-actions"><button id="toggle-chat" class="toolbar-chat-button" title="Mở ChatGPT trong Coworker"><span>ChatGPT</span></button><button id="copy" class="icon-button" aria-label="Sao chép thông tin MCP" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button><button id="show-tour" class="icon-button" aria-label="Mở hướng dẫn" title="Mở hướng dẫn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.4 2.4 0 1 1 4.1 1.7c-1.2 1.1-1.8 1.5-1.8 3"/><path d="M12 17h.01"/></svg></button><button id="refresh-current" class="icon-button" aria-label="Làm mới" title="Làm mới"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 11.6-2L20 12M4 12l2.8 5a7 7 0 0 0 11.6-2"/></svg></button></div>
+      </header>
+
+      <div class="page-scroll">
+        <section id="view-overview" class="view-panel active">
+          <div class="welcome-row"><div><p class="eyebrow">COWORKER</p><h1 id="welcome-title">Bắt đầu với workspace</h1></div><span class="task-mode-pill"><span class="mode-dot"></span><select id="permission-mode" disabled aria-label="Quyền task"><option value="ask">Ask</option><option value="auto">Auto</option><option value="full">Full</option></select></span></div>
+          <p id="mcp-offline-notice" class="offline-notice" hidden>Vui lòng bật MCP trước.</p>
+          <div class="welcome-actions">
+            <button class="action-tile" data-open-view="files"><span class="tile-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h7l2 2h9v10H3z"/><path d="M3 6.5V5h7l2 2"/></svg></span><span><strong>Mở tệp</strong><small>Tệp và editor</small></span><span class="tile-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></button>
+            <button class="action-tile" data-open-view="changes"><span class="tile-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="4" r="2"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 6v12M18 8v3a5 5 0 0 1-5 5H6"/></svg></span><span><strong>Xem thay đổi</strong><small>Git status và diff</small></span><span class="tile-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></button>
+            <button class="action-tile" data-open-view="terminal"><span class="tile-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 6 6 6-6 6M12 18h8"/></svg></span><span><strong>Chạy lệnh</strong><small>Terminal và jobs</small></span><span class="tile-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></button>
+          </div>
+          <div class="section-heading overview-heading"><div><span class="eyebrow">TASK</span><h2 id="overview-task-name">Task mới</h2></div><button id="copy-task-overview" class="button secondary">Sao chép ID</button></div>
+          <section class="card approvals-card"><div class="section-heading"><div><span class="eyebrow">DUYỆT</span><h3>Chờ duyệt</h3></div><span id="approval-count" class="count-chip">0</span></div><div id="approvals" class="approval-list"><p class="empty-state">Không có thao tác chờ duyệt.</p></div></section>
+          <section class="card dispatch-card"><div class="section-heading"><div><span class="eyebrow">HỘP THƯ TASK</span><h3>Yêu cầu phối hợp</h3></div><span id="dispatch-count" class="count-chip">0</span></div><div id="dispatch-inbox" class="approval-list"><p class="empty-state">Không có yêu cầu mới.</p></div></section>
+        </section>
+
+        <section id="view-files" class="view-panel">
+          <div class="page-heading"><div><span class="eyebrow">KHÔNG GIAN LÀM VIỆC</span><h1>Tệp</h1></div><button id="save-file" class="button primary" disabled>Lưu</button></div>
+          <article class="card explorer-card"><div class="task-create-row"><input id="browser-path" value="." aria-label="Đường dẫn thư mục"><button id="browse-path" class="button secondary">Mở</button></div><div id="file-browser" class="file-browser"><p class="empty-state">Chọn task để duyệt file.</p></div><div class="editor-heading"><span id="opened-file" class="hint">Chưa mở file</span><span class="hint">UTF-8</span></div><textarea id="file-content" class="file-editor" spellcheck="false" aria-label="Nội dung file" disabled></textarea><p id="file-message" class="message" role="status"></p></article>
+        </section>
+
+        <section id="view-changes" class="view-panel">
+          <div class="page-heading"><div><span class="eyebrow">MÃ NGUỒN</span><h1>Thay đổi</h1></div><button id="refresh-changes" class="button secondary" disabled>Làm mới</button></div>
+          <article class="card changes-card"><pre id="git-status" class="status-box">Chọn task để đọc Git status.</pre><label for="git-diff">Diff</label><pre id="git-diff" class="diff-box">Chưa tải diff.</pre><pre id="change-review" class="status-box"></pre>
+            <details class="github-tools"><summary><strong>GitHub</strong></summary><div class="github-actions"><button id="gh-auth" class="button secondary" disabled>Kiểm tra kết nối</button><select id="gh-state"><option value="open">Open</option><option value="closed">Closed</option><option value="all">All</option></select><button id="gh-prs" class="button secondary" disabled>Pull requests</button></div><div class="github-actions"><input id="gh-search" placeholder="Tìm issue"><button id="gh-issues" class="button secondary" disabled>Issues</button><input id="gh-number" type="number" min="1" placeholder="#"><button id="gh-checks" class="button secondary" disabled>Checks</button></div><label for="gh-title">Draft PR</label><input id="gh-title" placeholder="Tiêu đề"><textarea id="gh-body" class="command-input" placeholder="Mô tả"></textarea><button id="gh-create-pr" class="button secondary" disabled>Tạo draft</button><div class="github-actions"><select id="gh-merge-method"><option value="squash">Squash</option><option value="merge">Merge</option><option value="rebase">Rebase</option></select><label class="toggle-row"><input id="gh-delete-branch" type="checkbox"><span>Xóa branch</span></label><button id="gh-merge" class="button deny" disabled>Merge PR</button></div><pre id="github-output" class="status-box">—</pre></details>
+          </article>
+        </section>
+
+        <section id="view-terminal" class="view-panel">
+          <div class="page-heading"><div><span class="eyebrow">LỆNH</span><h1>Terminal</h1></div><button id="refresh-jobs" class="button secondary" disabled>Làm mới tác vụ</button></div>
+          <article class="card terminal-card"><label for="shell-command">Lệnh</label><textarea id="shell-command" class="command-input" placeholder="npm run build"></textarea><div class="footer-row"><div class="button-row"><button id="start-job" class="button secondary" disabled>Chạy nền</button><button id="run-command" class="button primary" disabled>Chạy</button></div></div><pre id="terminal-output" class="status-box">—</pre><div id="jobs-list" class="jobs-list"></div></article>
+        </section>
+
+        <section id="view-activity" class="view-panel">
+          <div class="page-heading"><div><span class="eyebrow">TASK</span><h1>Hoạt động</h1></div><div class="button-row"><button id="create-handoff" class="button secondary" disabled>Tạo handoff</button><button id="copy-handoff" class="button secondary" disabled>Sao chép handoff</button><button id="refresh-history" class="button secondary" disabled>Làm mới</button></div></div>
+          <section class="card history-card"><div id="history" class="history-list"><p class="empty-state">Chọn task để xem lịch sử.</p></div></section>
+          <section class="workspace-grid"><article class="card memory-card"><div class="section-heading"><div><span class="eyebrow">MEMORY</span><h3>Ghi nhớ dự án</h3></div><div class="button-row"><button id="load-memory" class="button secondary" disabled>Tải</button><button id="save-memory" class="button primary" disabled>Lưu</button></div></div><textarea id="memory-content" class="memory-editor" placeholder="Ghi chú cho dự án" disabled></textarea><p id="memory-message" class="message" role="status"></p></article><article class="card rewind-card"><div class="section-heading"><div><span class="eyebrow">CHECKPOINTS</span><h3>Khôi phục</h3></div><button id="load-checkpoints" class="button secondary" disabled>Tải</button></div><select id="checkpoint-select" disabled><option>Chưa có checkpoint</option></select><div class="button-row"><button id="preview-checkpoint" class="button secondary" disabled>Preview</button><button id="restore-checkpoint" class="button deny" disabled>Restore</button><button id="clear-checkpoints" class="button deny" disabled>Xóa hết</button></div><pre id="checkpoint-preview" class="status-box">—</pre></article></section>
+        </section>
+
+        <section id="view-connections" class="view-panel">
+          <div class="page-heading"><div><span class="eyebrow">SETTINGS</span><h1>Kết nối</h1></div></div>
+          <article class="card connection-card"><div class="section-heading"><h3>MCP server</h3><span class="status-chip">127.0.0.1:3210</span></div><label>Endpoint<input id="endpoint" readonly value="—"></label><label>Bearer token<input id="token" readonly value="—"></label><p id="message" class="message" role="status">MCP đã tắt.</p></article>
+          <details class="card tunnel-card"><summary><span><span class="eyebrow">CHATGPT WEB</span><strong>Secure MCP Tunnel</strong></span><span id="tunnel-status" class="status">Đã tắt</span></summary><div id="tunnel-list"></div><label class="toggle-row"><input id="tunnel-enabled" type="checkbox"><span>Bật tunnel</span></label><label for="tunnel-label">Tên (tài khoản)</label><input id="tunnel-label" autocomplete="off" placeholder="VD: tài khoản chính"><label for="tunnel-id">Tunnel ID</label><input id="tunnel-id" autocomplete="off" placeholder="tunnel_…"><label for="tunnel-api-key">Runtime API key</label><input id="tunnel-api-key" type="password" autocomplete="new-password" placeholder="Runtime API key"><label for="tunnel-binary">tunnel-client</label><div class="task-create-row"><input id="tunnel-binary" autocomplete="off" placeholder="Đường dẫn executable"><button id="choose-tunnel-binary" class="button secondary">Duyệt</button></div><div class="footer-row"><p id="tunnel-message" class="message" role="status"></p><button id="save-tunnel" class="button primary">Lưu</button></div><pre id="tunnel-logs" class="status-box">—</pre></details>
+          <details class="card integration-card"><summary><span><span class="eyebrow">MCP</span><strong>Upstream servers</strong></span><span class="summary-hint">stdio · HTTP · SSE</span></summary><label for="upstream-config">JSON</label><textarea id="upstream-config" spellcheck="false"></textarea><div class="footer-row"><p id="upstream-message" class="message" role="status"></p><div class="button-row"><button id="refresh-upstreams" class="button secondary">Trạng thái</button><button id="save-upstreams" class="button primary">Lưu</button></div></div><pre id="upstream-status" class="status-box">—</pre></details>
+        </section>
+        <section id="view-settings" class="view-panel">
+          <div class="page-heading"><div><span class="eyebrow">COWORKER</span><h1>Cài đặt</h1></div></div>
+          <article class="card preferences-card"><div class="section-heading"><h3>Giao diện</h3></div><div class="preference-grid"><label>Ngôn ngữ<select id="language-select"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></label><label>Chủ đề<select id="theme-select"><option value="system">Theo máy</option><option value="light">Sáng</option><option value="dark">Tối</option></select></label></div><label class="toggle-row startup-setting"><input id="auto-start-mcp" type="checkbox"><span>Tự động bật MCP khi khởi động app</span></label><p id="auto-start-mcp-message" class="message" role="status"></p></article>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="approval-dock" class="approval-dock" hidden></div>
+  <dialog id="profile-name-dialog" class="profile-dialog">
+    <form method="dialog">
+      <h2 id="profile-name-title">Profile name</h2>
+      <label for="profile-name-input" id="profile-name-label">Name</label>
+      <input id="profile-name-input" maxlength="60" autocomplete="off">
+      <div class="button-row"><button class="button secondary" value="cancel" id="profile-name-cancel">Cancel</button><button class="button primary" value="save" id="profile-name-save">Save</button></div>
+    </form>
+  </dialog>
+  <dialog id="profile-forget-dialog" class="profile-dialog">
+    <form method="dialog">
+      <h2 id="profile-forget-title">Remove profile?</h2>
+      <p id="profile-forget-message"></p>
+      <div class="button-row"><button class="button secondary" value="cancel" id="profile-forget-cancel">Cancel</button><button class="button danger-button" value="forget" id="profile-forget-confirm">Remove</button></div>
+    </form>
+  </dialog>
+  <script src="./renderer.js" type="module"></script>
+</body>
+</html>

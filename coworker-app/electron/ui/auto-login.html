@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Coworker · Đăng nhập tự động</title>
+  <link rel="stylesheet" href="./auto-login.css">
+</head>
+<body>
+  <main class="dialog">
+    <div class="card">
+    <header class="dialog-head">
+      <h2>Đăng nhập tự động</h2>
+      <button id="close" class="icon-btn" title="Đóng" aria-label="Đóng">✕</button>
+    </header>
+
+    <section id="run-panel" class="panel">
+      <div class="panel-title"><h3>Hàng đợi</h3><button id="stop" class="btn danger" hidden>Dừng</button></div>
+      <ul id="queue-list" class="queue-list"><li class="empty">Chưa có gì đang chạy.</li></ul>
+      <ul id="result-list" class="result-list"></ul>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h3>Tài khoản</h3>
+        <span id="account-count" class="count">0</span>
+      </div>
+      <details class="import-box" open>
+        <summary>Thêm nhanh — mỗi dòng: email | mật khẩu | mã 2FA (tùy chọn)</summary>
+        <textarea id="bulk-input" rows="4" spellcheck="false" placeholder="email@example.com|matkhau|JBSWY3DPEHPK3PXP"></textarea>
+        <div class="row">
+          <button id="save-bulk" class="btn primary">Thêm vào danh sách</button>
+          <button id="run-google" class="btn google">Đăng nhập bằng Google</button>
+          <button id="login-all" class="btn">Đăng nhập tất cả</button>
+        </div>
+      </details>
+      <ul id="account-list" class="account-list"><li class="empty">Chưa có tài khoản nào.</li></ul>
+    </section>
+    </div>
+  </main>
+  <script src="./auto-login-dialog.js"></script>
+</body>
+</html>
