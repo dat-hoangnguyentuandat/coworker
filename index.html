@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coworker — Trợ lý lập trình chạy ChatGPT ngay trên máy người dùng</title>
+  <meta name="description" content="Coworker đưa ChatGPT vào workspace thật để đọc file, sửa code, chạy lệnh và làm việc với Git với quyền kiểm soát rõ ràng.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
+  <link rel="stylesheet" href="assets/css/anim.css">
+  <link rel="stylesheet" href="assets/css/scroll.css">
+  <link rel="stylesheet" href="assets/css/mock.css">
+  <link rel="icon" type="image/png" href="assets/img/coworker-logo.png">
+</head>
+<body>
+<div class="progress-bar" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="./" aria-label="Coworker — trang chủ">
+      <img class="logo-mark app-logo" src="assets/img/coworker-logo.png" alt="">
+      Coworker
+    </a>
+    <nav class="site-nav">
+      <a href="#tinh-nang" data-i18n="nav.features">Tính năng</a>
+      <a href="#bao-mat" data-i18n="nav.security">Bảo mật</a>
+      <a href="docs/index.html" data-i18n="nav.docs">Tài liệu</a>
+      <a href="docs/quickstart.html" data-i18n="nav.start">Bắt đầu</a>
+      <div class="lang-toggle" role="group" aria-label="Ngôn ngữ / Language">
+        <span data-lang="vi">VI</span>
+        <span data-lang="en">EN</span>
+      </div>
+      <button class="hdr-control" data-theme-toggle data-i18n-title="nav.theme" title="Đổi giao diện sáng/tối">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero hero-zoom">
+    <div class="hero-inner">
+      <div class="hero-eyebrow fade-1">
+        <span class="dot"></span>
+        <span data-i18n="hero.badge">Coworker 1.0.0</span>
+      </div>
+      <h1 class="fade-2" data-i18n-html="hero.h1">Lập trình với ChatGPT, <em>ngay trên máy bạn.</em></h1>
+      <p class="hero-sub fade-3" data-i18n="hero.sub">Coworker đưa ChatGPT vào dự án thật: đọc file, sửa code, chạy lệnh và làm việc với Git. Bạn chọn mức tự động hoá và kiểm soát thao tác trong app.</p>
+      <div class="hero-actions fade-4">
+        <a class="btn btn-primary" href="docs/quickstart.html">
+          <span data-i18n="hero.cta1">Bắt đầu dùng</span>
+          <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="docs/index.html" data-i18n="hero.cta2">Xem tài liệu</a>
+      </div>
+    </div>
+
+    <div class="hero-mock-wrap">
+      <div class="hero-mock" role="img" aria-label="Giao diện Coworker">
+        <div class="mock-titlebar"><i></i><i></i><i></i><span data-i18n="hero.mockbar">coworker — E:\Project\app</span></div>
+        <div class="mock-body">
+          <div class="mock-sidebar">
+            <div class="sb-brand">
+              <img class="mini-logo" src="assets/img/coworker-logo.png" alt="">
+              <span data-i18n="hero.sb.brand">Coworker</span>
+            </div>
+            <div class="mock-workspace"><span class="mock-label" data-i18n="hero.sb.workspace">WORKSPACE</span><b>coworker-app</b><span class="mock-task" data-i18n="hero.sb.task">+ Task mới</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span data-i18n="hero.sb.overview">Tổng quan</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M13 2v7h7"/></svg><span data-i18n="hero.sb.files">Tệp</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="3"/><path d="M9 9h10.5M9 15h10.5M13 4.5l2 2M15 4.5l-2 2M13 17.5l2 2M15 17.5l-2 2"/><circle cx="18" cy="12" r="3"/></svg><span data-i18n="hero.sb.changes">Thay đổi</span></div>
+            <div class="sb-item active"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span data-i18n="hero.sb.chatgpt">ChatGPT</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg><span data-i18n="hero.sb.terminal">Terminal</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span data-i18n="hero.sb.activity">Hoạt động</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><span data-i18n="hero.sb.connections">Kết nối</span></div>
+            <div class="sb-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span data-i18n="hero.sb.settings">Cài đặt</span></div>
+            <div class="sb-spacer"></div>
+            <div class="sb-account"><span class="avatar">✓</span><span data-i18n="hero.sb.account">MCP đang bật</span></div>
+          </div>
+          <div class="mock-main">
+            <div class="mm-header">
+              <span data-i18n="hero.mm.label">Tổng quan · coworker-app</span>
+              <span class="mm-chip" data-i18n="hero.mm.chip">3 test pass</span>
+            </div>
+            <div class="mock-toolbar"><span class="profile-dot"></span><span data-i18n="hero.mm.profile">Profile chính</span><span class="mcp-state" data-i18n="hero.mm.mcp">MCP đang bật</span></div>
+            <div class="mm-row w60" style="height:14px"></div>
+            <div class="mm-row w80"></div>
+            <div class="mm-row w40"></div>
+            <div class="mm-chat">
+              <span class="chip">COWORKER</span>
+              <div><span data-i18n="hero.mm.chat"><b>Đã sửa <code>src/api/auth.ts</code> và chạy thử test.</b><br>2 file thay đổi · 3 test pass — chờ phê duyệt commit.</span></div>
+            </div>
+            <div class="approval">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg>
+              <span data-i18n="hero.mm.approval"><b>git_commit</b> · “fix: auth token refresh”</span>
+              <span class="a-actions">
+                <span class="a-btn ok" data-i18n="hero.mm.approve">Duyệt</span>
+                <span class="a-btn" data-i18n="hero.mm.deny">Từ chối</span>
+              </span>
+            </div>
+            <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATS ══════════ -->
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="stats-row" data-stagger="110">
+        <div class="stat-cell rv"><div class="stat-num"><span data-count="20" data-suffix="+">20+</span><em data-i18n="stats.1em">tool MCP</em></div><div class="stat-label" data-i18n="stats.1">đọc file · chạy lệnh · Git · tìm kiếm</div></div>
+        <div class="stat-cell rv"><div class="stat-num"><span data-count="2" data-suffix="">2</span><em data-i18n="stats.2em">lớp xác thực</em></div><div class="stat-label" data-i18n="stats.2">mật khẩu + TOTP, mã hoá DPAPI</div></div>
+        <div class="stat-cell rv"><div class="stat-num"><span data-count="3" data-suffix="">3</span><em data-i18n="stats.3em">luồng làm việc</em></div><div class="stat-label" data-i18n="stats.3">workspace · MCP · phê duyệt</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FEATURES ══════════ -->
+  <section class="section" id="tinh-nang">
+    <div class="container">
+      <div class="section-head center rv">
+        <span class="eyebrow" data-i18n="feat.eyebrow">Tính năng</span>
+        <h2><span data-i18n="feat.h2a">Một trợ lý thực thụ,</span> <em data-i18n="feat.h2b">không phải ô chat.</em></h2>
+        <p data-i18n="feat.sub" data-scrub>ChatGPT trên web nói về code. Coworker cho nó tay — và bạn giữ quyền kiểm soát.</p>
+      </div>
+
+      <div class="feature-split feature-code">
+        <div class="fs-copy rv rv-left">
+          <span class="num" data-i18n="f1.num">01 · LÀM VIỆC THẬT</span>
+          <h3 data-i18n="f1.h3">Đọc file, sửa code, chạy lệnh — trên workspace thật</h3>
+          <p data-i18n="f1.p">ChatGPT đọc và sửa file, chạy lệnh qua MCP ngay trong workspace. Xem diff và kết quả trực tiếp tại app.</p>
+          <ul>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f1.li1">Sửa file, diff, checkpoint hoàn tác</span><small data-i18n="f1.li1s">workspace_write_file · workspace_edit_file · rewind</small></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f1.li2">Terminal, Git, process</span><small data-i18n="f1.li2s">run_command · git_commit · start_process</small></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f1.li3">Tìm kiếm code thông minh</span><small data-i18n="f1.li3s">workspace_code_search · workspace_analyze</small></span></li>
+          </ul>
+        </div>
+        <div class="fs-media rv rv-right">
+          <div class="panel-title" data-i18n="f1.panel">Hoạt động gần đây</div>
+          <div class="vignette-flow">
+            <div class="vf-step done"><span class="vf-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b data-i18n="act.1b">workspace_read_file</b><span data-i18n="act.1s">src/api/auth.ts · 214 dòng</span></div></div>
+            <div class="vf-step done"><span class="vf-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b data-i18n="act.2b">workspace_edit_file</b><span data-i18n="act.2s">auth.ts · +18 −6 dòng</span></div></div>
+            <div class="vf-step done"><span class="vf-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b data-i18n="act.3b">run_command</b><span data-i18n="act.3s">npm test · 3 pass, 0 fail</span></div></div>
+            <div class="vf-step active"><span class="vf-dot">4</span><div><b data-i18n="act.4b">Chờ duyệt · git_commit</b><span data-i18n="act.4s">“fix: auth token refresh” — chờ người dùng phê duyệt</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-split flip feature-profiles">
+        <div class="fs-copy rv rv-right">
+          <span class="num" data-i18n="f2.num">02 · NHIỀU TÀI KHOẢN</span>
+          <h3 data-i18n="f2.h3">Hết quota tài khoản này, tài khoản khác tiếp tay ngay</h3>
+          <p data-i18n="f2.p">Lưu nhiều tài khoản ChatGPT với mật khẩu và 2FA được mã hoá. Khi cần, đăng nhập tài khoản khác; Coworker chuyển phiên trong profile đó.</p>
+          <ul>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f2.li1">Đăng nhập tự động email/mật khẩu + OTP</span><small data-i18n="f2.li1s">TOTP 2FA · credential mã hoá, không plaintext</small></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f2.li2">Đăng nhập bằng Google</span><small data-i18n="f2.li2s">Cửa sổ riêng, người dùng tự nhập — app không chạm mật khẩu Google</small></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f2.li3">1 profile = 1 tài khoản</span><small data-i18n="f2.li3s">Đăng nhập mới đè cũ, binding tự cập nhật</small></span></li>
+          </ul>
+        </div>
+        <div class="fs-media rv rv-left">
+          <div class="panel-title" data-i18n="f2.panel">Đăng nhập tự động</div>
+          <div class="vignette-accounts">
+            <div class="va-row">
+              <span class="va-avatar">A</span>
+              <div class="va-info"><b data-i18n="f2.a1n">acc.chinh@company.com</b><span data-i18n="f2.a1d">[OI] · có 2FA</span></div>
+              <span class="va-tag ok" data-i18n="f2.a1t">Đang chạy</span>
+              <span class="va-profile" data-i18n="f2.a1p">ChatGPT 1</span>
+            </div>
+            <div class="va-row google">
+              <span class="va-avatar">G</span>
+              <div class="va-info"><b data-i18n="f2.a2n">tendat@gmail.com</b><span data-i18n="f2.a2d">Google · đăng nhập tay</span></div>
+              <span class="va-tag none" data-i18n="f2.a2t">— Không —</span>
+            </div>
+            <div class="va-row">
+              <span class="va-avatar">B</span>
+              <div class="va-info"><b data-i18n="f2.a3n">acc.phu@company.com</b><span data-i18n="f2.a3d">[OI] · có mật khẩu</span></div>
+              <span class="va-tag" data-i18n="f2.a3t">Sẵn sàng</span>
+              <span class="va-profile" data-i18n="f2.a3p">ChatGPT 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-split feature-tunnels">
+        <div class="fs-copy rv rv-left">
+          <span class="num" data-i18n="f3.num">03 · TUNNEL MÃ HOÁ</span>
+          <h3 data-i18n="f3.h3">Mỗi tài khoản một đường hầm riêng vào máy người dùng</h3>
+          <p data-i18n="f3.p">Secure MCP Tunnel nối ChatGPT tới workspace qua tunnel-client chính chủ của [OI] — mỗi tài khoản một tunnel, một Runtime API key riêng. Không mở port, không lộ IP.</p>
+          <ul>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f3.li1">Multi-tunnel song song</span><small data-i18n="f3.li1s">mỗi tunnel một process tunnel-client riêng</small></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f3.li2">Trạng thái từng đường hầm</span><small data-i18n="f3.li2s">chạy / dừng / lỗi hiển thị riêng từng dòng</small></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><span data-i18n="f3.li3">Key được bảo vệ trên máy</span><small data-i18n="f3.li3s">lưu trữ mã hoá theo cơ chế của hệ điều hành</small></span></li>
+          </ul>
+        </div>
+        <div class="fs-media rv rv-right">
+          <div class="panel-title" data-i18n="f3.panel">Secure MCP Tunnel</div>
+          <div class="vignette-tunnels">
+            <div class="vt-row running">
+              <b data-i18n="f3.t1">tài khoản chính</b>
+              <span class="vt-status"><span class="pulse"></span><span data-i18n="f3.t1s">Đang chạy</span></span>
+              <span class="vt-id">tunnel_6ab3f06ad2…</span>
+            </div>
+            <div class="vt-row running">
+              <b data-i18n="f3.t2">tài khoản 2</b>
+              <span class="vt-status"><span class="pulse"></span><span data-i18n="f3.t2s">Đang chạy</span></span>
+              <span class="vt-id">tunnel_91f2c88e01…</span>
+            </div>
+            <div class="vt-row">
+              <b data-i18n="f3.t3">tài khoản 3</b>
+              <span class="vt-status"><span class="pulse"></span><span data-i18n="f3.t3s">Đã tắt</span></span>
+              <span class="vt-id">tunnel_c4d9172b73…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECURITY (pinned horizontal scroll) ══════════ -->
+  <section class="security-band hz-band" id="bao-mat">
+    <div class="hz-sticky">
+      <div class="hz-track">
+        <div class="hz-panel">
+          <span class="hz-num" data-i18n="hz1.num">01 / 04 · PHÊ DUYỆT</span>
+          <h3 data-i18n-html="hz1.h3">Mọi thao tác đều <em>rõ ràng.</em></h3>
+          <p data-i18n="hz1.p">Các thao tác sửa file, chạy lệnh và Git hiện trong Hoạt động. Ở chế độ Hỏi trước, bạn duyệt từng thao tác.</p>
+          <div class="hz-kv">tool_call: <mark>git_commit</mark><br>scope: <mark>workspace</mark><br>mode: <mark>ask-first</mark></div>
+        </div>
+        <div class="hz-panel">
+          <span class="hz-num" data-i18n="hz2.num">02 / 04 · MÃ HOÁ DỮ LIỆU</span>
+          <h3 data-i18n-html="hz2.h3">Credential được bảo vệ <em>trên thiết bị.</em></h3>
+          <p data-i18n="hz2.p">Mật khẩu, mã 2FA và Runtime API key được mã hoá theo tài khoản Windows của bạn.</p>
+          <div class="hz-kv">storage: <mark>safeStorage · DPAPI</mark><br>plaintext_on_disk: <mark>never</mark></div>
+        </div>
+          <div class="hz-panel">
+          <span class="hz-num" data-i18n="hz3.num">03 / 04 · HOÀN TÁC</span>
+          <h3 data-i18n-html="hz3.h3">Sai ở đâu, <em>quay lại đúng chỗ đó.</em></h3>
+          <p data-i18n="hz3.p">Mỗi lần AI sửa file đều có checkpoint. Xem diff và hoàn tác từng bước ngay trong app.</p>
+          <div class="hz-kv">workspace_edit_file → <mark>checkpoint #42</mark><br>rewind → <mark>checkpoint #41</mark></div>
+        </div>
+        <div class="hz-panel">
+          <span class="hz-num" data-i18n="hz4.num">04 / 04 · KHÔNG MỞ PORT</span>
+          <h3 data-i18n-html="hz4.h3">Tunnel kết nối <em>ra ngoài,</em> không mở cửa vào.</h3>
+          <p data-i18n="hz4.p">tunnel-client tạo kết nối ra ngoài; app không cần mở cổng vào máy. Kiểm tra chính sách mạng trước khi dùng.</p>
+          <div class="hz-kv">direction: <mark>outbound-only</mark><br>listen_ports: <mark>0</mark></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ══════════ STEPS ══════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head rv">
+        <span class="eyebrow" data-i18n="steps.eyebrow">Cách hoạt động</span>
+        <h2 data-i18n="steps.h2">Từ cài đặt đến một luồng làm việc rõ ràng</h2>
+        <p data-i18n="steps.p" data-scrub>Cùng một luồng mà app hướng dẫn từng bước — bản web này có tài liệu chi tiết cho từng phần.</p>
+      </div>
+      <div class="steps-rail" data-stagger="110">
+        <div class="step rv">
+          <span class="step-num">1</span>
+          <div><b data-i18n="steps.1b">Chọn workspace, bật MCP</b><p data-i18n="steps.1p">Trỏ Coworker vào thư mục dự án. MCP server chạy local tại 127.0.0.1:3210.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="step-num">2</span>
+          <div><b data-i18n="steps.2b">Tạo tunnel + app Coworker trong ChatGPT</b><p data-i18n="steps.2p">Tunnel ID + Runtime API key từ [OI] Platform, rồi tạo app chọn Connection = Tunnel. Chi tiết: <a href="docs/quickstart.html">Quickstart</a>.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="step-num">3</span>
+          <div><b data-i18n="steps.3b">Gắn tài khoản + tunnel</b><p data-i18n="steps.3p">Thêm tài khoản vào Đăng nhập tự động, thêm tunnel tương ứng trong Kết nối. Nhiều cặp tài khoản–tunnel chạy song song.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="step-num">4</span>
+          <div><b data-i18n="steps.4b">Chat, duyệt, ship</b><p data-i18n="steps.4p">Mở ChatGPT trong app, giao việc. Thanh duyệt dưới cùng phê duyệt từng thao tác — code vào thẳng workspace.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="rv">
+        <span class="eyebrow" data-i18n="cta.eyebrow">Sẵn sàng</span>
+        <h2><span data-i18n="cta.h2a">ChatGPT làm việc</span> <em data-i18n="cta.h2b">trong dự án của bạn.</em></h2>
+        <p data-i18n="cta.p" data-scrub>Một file cài đặt, một tunnel, và bạn đã có một lập trình viên AI làm việc trực tiếp trên máy mình.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="docs/installation.html">
+            <span data-i18n="cta.btn">Tải Coworker</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="docs/index.html" data-i18n="cta.btn2">Đọc tài liệu trước</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-mark"><img class="footer-logo" src="assets/img/coworker-logo.png" alt=""><span>Coworker</span></div>
+        <p data-i18n="footer.brand">Trợ lý AI làm việc trực tiếp trong workspace của bạn, với quyền kiểm soát rõ ràng ở từng thao tác.</p>
+      </div>
+      <div class="footer-col">
+        <b data-i18n="footer.product">Sản phẩm</b>
+        <a href="#tinh-nang" data-i18n="footer.features">Tính năng</a>
+        <a href="docs/installation.html" data-i18n="footer.download">Tải app</a>
+        <a href="docs/changelog.html" data-i18n="footer.changelog">Changelog</a>
+      </div>
+      <div class="footer-col">
+        <b data-i18n="footer.docs">Tài liệu</b>
+        <a href="docs/index.html" data-i18n="footer.overview">Tổng quan</a>
+        <a href="docs/quickstart.html" data-i18n="footer.quickstart">Quickstart</a>
+        <a href="docs/multi-account.html" data-i18n="footer.multiacc">Multi-account</a>
+        <a href="docs/multi-tunnel.html" data-i18n="footer.multitun">Multi-tunnel</a>
+      </div>
+      <div class="footer-col">
+        <b data-i18n="footer.contact">Liên hệ</b>
+        <a href="mailto:hoangdatlnbp@gmail.com">hoangdatlnbp@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span data-i18n="footer.meta1">Coworker · Made in Vietnam</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/anim.js"></script>
+<script src="assets/js/scroll.js"></script>
+<script src="assets/js/mock.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
