@@ -154,10 +154,15 @@
 /* ── Mobile: mock rows must not overflow ────────────────── */
 
 @media (max-width: 640px) {
-.va-row { max-width: 100%; }
+.va-row { max-width: 100%; flex-wrap: wrap; }
 .va-row .va-info { min-width: 0; }
+.va-row .va-info { flex: 1 1 calc(100% - 42px); }
 .va-row .va-info b, .va-row .va-info span { overflow-wrap: anywhere; }
-.va-tag { flex-shrink: 0; }
+.va-tag { flex-shrink: 0; margin-left: 42px; }
+}
+
+@media (max-width: 360px) {
+  .va-row .va-profile { margin-left: 42px; }
 }
 
 /* Section-level motion: the page should feel alive below the hero too. */
