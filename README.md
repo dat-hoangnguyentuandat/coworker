@@ -1,6 +1,10 @@
-# Coworker
+<p align="center"><img src="assets/coworker-logo.png" alt="Coworker logo" width="148"></p>
 
-Coworker is a Windows desktop workspace that connects ChatGPT to your local projects through the Model Context Protocol (MCP). Work with files, Git, and terminal commands in a task-focused interface, with visibility into tool activity and control over what runs.
+<h1 align="center">Coworker</h1>
+
+<p align="center">A Windows desktop workspace for using ChatGPT with local projects through the Model Context Protocol (MCP).</p>
+
+Work with files, Git, and terminal commands in a task-focused interface, with visibility into tool activity and control over what runs.
 
 ## What you can do
 
@@ -19,13 +23,13 @@ Coworker supports Windows 10/11 on x64. Download the installer from the [latest 
 3. Start MCP in **Connections**. Follow the in-app guide to configure a tunnel and connect the Coworker app in ChatGPT.
 4. In a new ChatGPT conversation, select Coworker and try a small request, such as listing files in the selected workspace. Review any requested operation before approving it.
 
-See the [installation guide](coworker-web/docs/en.html?page=install) and [quickstart](coworker-web/docs/en.html?page=quickstart) for the complete setup sequence. The app's **Guide** button walks through the same flow.
+See the [installation guide](https://ws-coworker.netlify.app/docs/en.html?page=install) and [quickstart](https://ws-coworker.netlify.app/docs/en.html?page=quickstart) for the complete setup sequence. The app's **Guide** button walks through the same flow.
 
 ## Security model
 
 Coworker restricts its file tools to the selected workspace and exposes MCP locally with a runtime bearer token. Approval modes control whether supported operations wait for confirmation. Terminal commands, however, run with your Windows user permissions: selecting a workspace does **not** sandbox the shell. Review commands before approving them, and never share Runtime API keys or bearer tokens.
 
-Read the [security guide](coworker-web/docs/en.html?page=security) for details.
+Read the [security guide](https://ws-coworker.netlify.app/docs/en.html?page=security) for details.
 
 ## Run from source
 
@@ -37,13 +41,14 @@ npm ci
 npm start
 ```
 
-To create a Windows installer, run `npm run dist:win` from `coworker-app/`. The desktop app lives in [`coworker-app/electron/`](coworker-app/electron/), the website and user guides in [`coworker-web/`](coworker-web/), and engineering documentation in [`docs/`](docs/).
+To create a Windows installer, run `npm run dist:win` from `coworker-app/`. The desktop app lives in `coworker-app/electron/`, the website and user guides in `coworker-web/`, and engineering documentation in `docs/`.
 
 ## Documentation and support
 
-- [User documentation](coworker-web/docs/en.html)
-- [Multiple profiles](coworker-web/docs/en.html?page=profiles)
-- [MCP and tunnels](coworker-web/docs/en.html?page=tunnels)
-- [Changelog](coworker-web/docs/en.html?page=changelog)
+- [Website](https://ws-coworker.netlify.app/)
+- [User documentation](https://ws-coworker.netlify.app/docs/en.html)
+- [Multiple profiles](https://ws-coworker.netlify.app/docs/en.html?page=profiles)
+- [MCP and tunnels](https://ws-coworker.netlify.app/docs/en.html?page=tunnels)
+- [Changelog](https://ws-coworker.netlify.app/docs/en.html?page=changelog)
 
 Questions or feedback: [hoangdatlnbp@gmail.com](mailto:hoangdatlnbp@gmail.com).
