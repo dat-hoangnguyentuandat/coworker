@@ -75,7 +75,7 @@ export class UpstreamManager {
         transport = new StreamableHTTPClientTransport(new URL(config.url), { requestInit: { headers } });
       }
     }
-    const client = new Client({ name: "coworker", version: "1.0.0" });
+    const client = new Client({ name: "coworker", version: "1.0.1" });
     try { await client.connect(transport); }
     catch (error) { await transport.close().catch(() => {}); throw error; }
     const record = { config, client, transport, connectedAt: new Date().toISOString() };

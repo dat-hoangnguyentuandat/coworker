@@ -900,6 +900,7 @@ ipcMain.handle("preferences:set-auto-start-mcp", async (_event, enabled) => {
 });
 
 ipcMain.handle("mcp:stop", async () => {
+  if (runtimeStarting) await runtimeStarting.catch(error => console.error(`MCP start interrupted by stop: ${error.message}`));
   if (runtime) {
     const current = runtime;
     workbenchCache = current.workbenchSnapshot();
@@ -907,8 +908,9 @@ ipcMain.handle("mcp:stop", async () => {
     runtime = undefined;
     workbenchCache.pendingApprovals = [];
     tunnelCache = current.tunnelSnapshot().map(state => ({ ...state, status: state.enabled ? "stopped" : "disabled", message: "MCP server is stopped; tunnel-client is not running." }));
-    const cleanup = current.stop().catch(error => console.error(`MCP stop cleanup failed: ${error.message}`));
-    runtimeStopping = Promise.race([cleanup, new Promise(resolve => setTimeout(resolve, 5000))]).finally(() => { runtimeStopping = Promise.resolve(); });
+    runtimeStopping = current.stop()
+      .catch(error => console.error(`MCP stop cleanup failed: ${error.message}`))
+      .finally(() => { runtimeStopping = Promise.resolve(); });
   }
   sendState();
 });

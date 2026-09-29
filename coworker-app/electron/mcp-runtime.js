@@ -60,7 +60,7 @@ export async function createMcpRuntime({ workspacePath, workspacePaths = [], dat
   let upstreamConfigs = [];
 
   const createSession = async () => {
-    const server = new McpServer({ name: "coworker", version: "1.0.0" }, {
+    const server = new McpServer({ name: "coworker", version: "1.0.1" }, {
       capabilities: { tools: { listChanged: true } },
       instructions: "Coworker is a local workspace bridge, not a model runtime. Start with workbench_status and workbench_list_tasks. Bind this conversation to one task with workbench_bind_task when the client has a stable MCP/OpenAI session; otherwise pass the returned task_id to every tool call. Task permissions are enforced in the Electron main process. Ask is the default; an approved write/command waits for a local decision. Shell commands run with the current OS user's host permissions; workspace cwd alone is not a sandbox. workspace_analyze and workspace_code_search provide bounded lexical hints, not compiler/LSP guarantees. Rewind covers Coworker MCP file writes only; it does not track shell edits or conversation history. task_dispatch queues work for another conversation in the same workspace; it cannot wake a ChatGPT tab, so the owner must resume that conversation and claim the message."
     });
@@ -206,7 +206,7 @@ export async function createMcpRuntime({ workspacePath, workspacePaths = [], dat
       state.resolveTask(taskId, {});
       let connection = workbenchClients.get(taskId);
       if (!connection) {
-        const client = new Client({ name: "coworker-workbench", version: "1.0.0" });
+        const client = new Client({ name: "coworker-workbench", version: "1.0.1" });
         const clientTransport = new StreamableHTTPClientTransport(new URL(`http://${HOST}:${PORT}/mcp`), { requestInit: { headers: { Authorization: `Bearer ${accessToken}` } } });
         try { await client.connect(clientTransport); }
         catch (error) { await clientTransport.close().catch(() => {}); throw error; }
@@ -234,10 +234,6 @@ export async function createMcpRuntime({ workspacePath, workspacePaths = [], dat
     },
     async stop() {
       approvals.close();
-      if (httpServer) {
-        await new Promise(resolve => httpServer.close(() => resolve()));
-        httpServer = undefined;
-      }
       await Promise.allSettled([...sessionTransports.values()].map(item => item.close()));
       await Promise.allSettled([...sessionServers.values()].map(item => item.close()));
       sessionTransports.clear();
@@ -247,6 +243,15 @@ export async function createMcpRuntime({ workspacePath, workspacePaths = [], dat
       await tunnel.stopAll();
       await Promise.allSettled([...upstreamManagers].map(manager => manager.disconnectAll()));
       await Promise.allSettled([...workspaceTools].map(tools => tools.stop()));
+      if (httpServer) {
+        // Closing transports first releases long-lived Streamable HTTP/SSE
+        // connections. Force any client that ignored the close notification
+        // out before waiting for the listener, otherwise restart can race a
+        // still-live server and tunnel carrying the previous bearer token.
+        httpServer.closeAllConnections?.();
+        await new Promise(resolve => httpServer.close(() => resolve()));
+        httpServer = undefined;
+      }
     }
   };
 }

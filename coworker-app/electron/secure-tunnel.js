@@ -112,14 +112,27 @@ export class SecureTunnelManager extends EventEmitter {
       return;
     }
     this.#child = undefined;
+    let timeout;
+    const closePromise = new Promise(resolve => {
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeout);
+        resolve();
+      };
+      child.once("close", finish);
+      child.once("error", finish);
+      timeout = setTimeout(finish, 5000);
+    });
     if (process.platform === "win32" && child.pid) {
       const killer = spawn("taskkill.exe", ["/pid", String(child.pid), "/t", "/f"], { windowsHide: true, stdio: "ignore" });
-      killer.unref();
+      await new Promise(resolve => {
+        killer.once("close", resolve);
+        killer.once("error", resolve);
+      });
     } else child.kill("SIGTERM");
-    await new Promise(resolve => {
-      child.once("close", resolve);
-      setTimeout(resolve, 2500).unref?.();
-    });
+    await closePromise;
     this.#status = this.#config.enabled ? "stopped" : "disabled";
     this.#message = this.#config.enabled ? "MCP server stopped; tunnel-client is not running." : "Secure MCP Tunnel is off.";
     this.#publish();
