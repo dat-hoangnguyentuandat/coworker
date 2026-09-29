@@ -1,13 +1,13 @@
 (() => {
   "use strict";
   const pages = [
-    { id: "overview", title: "Coworker documentation", label: "Overview", description: "Learn the core concepts, then follow the setup guides.", sections: ["overview-concepts", "overview-path"] },
-    { id: "install", title: "Installation", description: "Install Coworker and select the project folder it may work with.", sections: ["install"] },
-    { id: "quickstart", title: "Quickstart", description: "Create a task, connect ChatGPT, and try a first request.", sections: ["quickstart", "workspaces"] },
-    { id: "profiles", title: "Multiple accounts", description: "Use independent ChatGPT profiles for separate accounts.", sections: ["profiles"] },
-    { id: "tunnels", title: "Multiple tunnels", description: "Configure MCP connections and tunnels for your profiles.", sections: ["tunnels"] },
-    { id: "security", title: "Security model", description: "Understand approvals, local permissions, and common connection issues.", sections: ["security", "troubleshooting"] },
-    { id: "changelog", title: "Changelog", description: "Release notes for Coworker.", sections: ["changelog"] },
+    { id: "overview", title: "Coworker documentation", label: "Overview", description: "Coworker brings ChatGPT into your project workspace to read files, edit code and run commands. Choose an access mode and follow each action in the app.", sections: ["overview-concepts", "overview-path"] },
+    { id: "install", title: "Installation", description: "Install Coworker on 64-bit Windows 10/11, then set up your workspace.", sections: ["install"] },
+    { id: "quickstart", title: "Quickstart", description: "From installation to your first tool call: create a tunnel, connect ChatGPT and verify Coworker.", sections: ["quickstart", "workspaces"] },
+    { id: "profiles", title: "Multiple accounts", description: "Assign ChatGPT accounts to independent profiles and switch between them safely.", sections: ["profiles"] },
+    { id: "tunnels", title: "Multiple tunnels", description: "Give each ChatGPT account its own tunnel and Runtime API key, then run them side by side.", sections: ["tunnels"] },
+    { id: "security", title: "Security and architecture", description: "See how Coworker protects credentials, routes MCP traffic and asks for approval.", sections: ["security", "troubleshooting"] },
+    { id: "changelog", title: "Changelog", description: "Public Coworker releases.", sections: ["changelog"] },
   ];
   const requested = new URLSearchParams(location.search).get("page") || location.hash.slice(1);
   const pageIndex = Math.max(0, pages.findIndex(page => page.id === requested));

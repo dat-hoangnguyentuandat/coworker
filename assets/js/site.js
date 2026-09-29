@@ -10,8 +10,9 @@
     if (!localStorage.getItem("cw.theme")) root.dataset.theme = e.matches ? "dark" : "light";
   });
   const dict = window.CW_I18N || { vi: {}, en: {} };
-  const englishDocs = document.body.classList.contains("docs-body") && location.pathname.endsWith("/en.html");
-  let lang = new URLSearchParams(location.search).get("lang") || (englishDocs ? "en" : (localStorage.getItem("cw.lang") || "vi"));
+  // Netlify serves en.html at the extensionless /docs/en URL.
+  const englishDocs = document.body.classList.contains("docs-body") && /\/en(?:\.html)?$/.test(location.pathname);
+  let lang = englishDocs ? "en" : (new URLSearchParams(location.search).get("lang") || localStorage.getItem("cw.lang") || "vi");
   document.querySelectorAll("[data-theme-toggle]").forEach(btn => {
     btn.addEventListener("click", event => {
       const next = root.dataset.theme === "dark" ? "light" : "dark";
@@ -63,15 +64,16 @@
     localStorage.setItem("cw.lang", lang);
   }
   const englishAnchors = {
-    "installation.html": "install",
-    "quickstart.html": "quickstart",
-    "multi-account.html": "profiles",
-    "multi-tunnel.html": "tunnels",
-    "security.html": "security",
-    "changelog.html": "changelog",
+    installation: "install",
+    quickstart: "quickstart",
+    "multi-account": "profiles",
+    "multi-tunnel": "tunnels",
+    security: "security",
+    changelog: "changelog",
   };
   const englishTarget = () => {
-    const page = englishAnchors[location.pathname.split("/").pop()];
+    const basename = location.pathname.split("/").pop().replace(/\.html$/, "");
+    const page = englishAnchors[basename];
     return `en.html${page ? `?page=${page}` : ""}`;
   };
   if (document.body.classList.contains("docs-body") && !englishDocs && lang === "en") {
@@ -107,12 +109,12 @@
   }
   document.querySelectorAll(".lang-toggle span").forEach(span => {
     span.addEventListener("click", () => {
-      if (document.body.classList.contains("docs-body") && span.dataset.lang === "en" && !location.pathname.endsWith("/en.html")) {
+      if (document.body.classList.contains("docs-body") && span.dataset.lang === "en" && !englishDocs) {
         localStorage.setItem("cw.lang", "en");
         location.href = englishTarget();
         return;
       }
-      if (document.body.classList.contains("docs-body") && span.dataset.lang === "vi" && location.pathname.endsWith("/en.html")) {
+      if (englishDocs && span.dataset.lang === "vi") {
         localStorage.setItem("cw.lang", "vi");
         const vietnameseTargets = { install: "installation.html", quickstart: "quickstart.html", profiles: "multi-account.html", tunnels: "multi-tunnel.html", security: "security.html", changelog: "changelog.html" };
         const page = new URLSearchParams(location.search).get("page") || location.hash.slice(1);
@@ -202,11 +204,11 @@
   });
 
   // ── Active sidebar link (docs) ────────────────────────
-  const currentPath = location.pathname.split("/").pop() || "index.html";
+  const currentPath = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "");
   document.querySelectorAll(".docs-sidebar a").forEach(link => {
     if (englishDocs) return;
-    const href = link.getAttribute("href") || "";
-    if (href === currentPath || (currentPath === "index.html" && href === "./")) link.classList.add("active");
+    const href = (link.getAttribute("href") || "").replace(/\.html$/, "");
+    if (href === currentPath || (currentPath === "index" && href === "./")) link.classList.add("active");
   });
 
   // ── TOC scroll-spy (docs) ─────────────────────────────

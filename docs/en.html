@@ -15,19 +15,140 @@
 <div class="docs-shell"><aside class="docs-sidebar">
   <div class="sb-group"><b>Start here</b><a href="en.html">Overview</a><a href="en.html?page=install">Installation</a><a href="en.html?page=quickstart">Quickstart</a></div>
   <div class="sb-group"><b>Guides</b><a href="en.html?page=profiles">Multiple accounts</a><a href="en.html?page=tunnels">Multiple tunnels</a></div>
-  <div class="sb-group"><b>Reference</b><a href="en.html?page=security">Security model</a><a href="en.html?page=changelog">Changelog</a></div>
+  <div class="sb-group"><b>Reference</b><a href="en.html?page=security">Security and architecture</a><a href="en.html?page=changelog">Changelog</a></div>
 </aside><main class="docs-main">
-  <div class="docs-header rv"><span class="eyebrow">Documentation</span><h1>Coworker, in plain English.</h1><p class="desc">A desktop workspace for using ChatGPT with your real project files, tasks and tools. This guide follows the current app interface and avoids assuming a specific account or network setup.</p></div>
-  <div class="doc-section rv" id="overview-concepts"><h2>Core concepts</h2><table><tr><th>Term</th><th>Meaning</th></tr><tr><td>Workspace</td><td>The project folder Coworker works with.</td></tr><tr><td>Profile</td><td>An independent ChatGPT window with its own sign-in session.</td></tr><tr><td>Tunnel</td><td>An outbound connection between ChatGPT and Coworker's MCP tools.</td></tr></table></div>
-  <div class="doc-section rv" id="overview-path"><h2>Suggested path</h2><ol class="doc-steps"><li><a href="en.html?page=install">Installation</a> — install Coworker and select a workspace.</li><li><a href="en.html?page=quickstart">Quickstart</a> — connect ChatGPT and try a first task.</li><li><a href="en.html?page=profiles">Multiple accounts</a> — use separate profiles for separate accounts.</li><li><a href="en.html?page=tunnels">Multiple tunnels</a> — configure separate connections when needed.</li></ol></div>
-  <div class="doc-section rv" id="install"><h2>Installation</h2><ol class="doc-steps"><li><b>Install the Windows desktop app</b><p>Run the latest Coworker installer and open the app. If Windows shows a SmartScreen warning, verify the installer source before continuing.</p></li><li><b>Choose a workspace</b><p>Select the project folder that Coworker may work with. You can add, rename or remove workspaces later.</p></li><li><b>Review MCP status</b><p>Open <strong>Connections</strong>. MCP-dependent controls stay disabled until MCP is enabled and ready.</p></li></ol></div>
-  <div class="doc-section rv" id="quickstart"><h2>Quickstart</h2><ol class="doc-steps"><li><b>Create a task</b><p>Use <strong>New task</strong> in the sidebar and give it a short, specific name.</p></li><li><b>Connect ChatGPT</b><p>Open <strong>Connections</strong>, configure the MCP connection required by your ChatGPT workspace, then confirm the status is ready.</p></li><li><b>Ask for a bounded change</b><p>Start with a small request such as listing a folder or explaining one file. Include the workspace and task context.</p></li><li><b>Review before execution</b><p>In Ask-first mode, inspect the requested scope in the approval bar and choose Allow or Deny. Automatic and Full modes are available when appropriate.</p></li></ol></div>
-  <div class="doc-section rv" id="workspaces"><h2>Workspaces and tasks</h2><p>A workspace is a local project folder. A task is the unit of work inside that workspace. The sidebar keeps both visible so you can switch context without recreating your project configuration.</p><ul><li>Create, rename and delete workspaces from the workspace menu.</li><li>Create, rename and close tasks from the task menu.</li><li>Use a separate task when you need a clean context or want another conversation to continue independently.</li></ul></div>
-  <div class="doc-section rv" id="profiles"><h2>Profiles and multiple accounts</h2><p>Each profile is an independent ChatGPT browser session with its own cookies and one active account. You can keep several profiles open and switch between them without recreating workspaces or tasks.</p><ol class="doc-steps"><li><b>Create a profile</b><p>Use the profile selector in the app toolbar, then choose Add profile. Give it a name that identifies the account or purpose.</p></li><li><b>Sign in</b><p>Open ChatGPT in that profile. Use the supported sign-in method for the account. If you save credentials for automatic sign-in, review what is stored in the app first.</p></li><li><b>Switch safely</b><p>Select another profile from the toolbar. Return to the first profile to inspect its conversation and task status; activity is not copied between accounts.</p></li></ol></div>
-  <div class="doc-section rv" id="tunnels"><h2>MCP and tunnels</h2><p>MCP connects ChatGPT tools to Coworker. A tunnel is an outbound connection used when your ChatGPT setup requires remote MCP access.</p><ol class="doc-steps"><li><b>Enable MCP</b><p>In Connections, turn on MCP and confirm that the local server reports Ready.</p></li><li><b>Create a tunnel ID</b><p>In OpenAI Platform, select the correct organization and ChatGPT workspace, then create a tunnel. Copy its ID.</p></li><li><b>Create a Runtime API key</b><p>Open Organization API Keys → Runtime API Keys. Give the key only the tunnel permissions required by your organization, then copy it once.</p></li><li><b>Configure Coworker</b><p>Enter the tunnel ID and Runtime API key in Connections, then start the tunnel and verify its status.</p></li><li><b>Create the ChatGPT app</b><p>In ChatGPT, open <strong>Settings → Plugin</strong>, go to the <strong>plugin management page</strong>, click <strong>+</strong>, then choose <strong>New app</strong>. Configure the Coworker app with <strong>Connection = Tunnel</strong> and the tunnel you created.</p></li></ol><div class="callout warn"><div><b>Keep keys private</b><p>Never paste a Runtime API key into ChatGPT, screenshots, source files or support messages. Rotate a key if it may have been exposed.</p></div></div></div>
-  <div class="doc-section rv" id="security"><h2>Security model</h2><p>Coworker shows tool activity and applies the selected access mode. Ask-first is the safest default for unfamiliar work. Automatic and Full modes reduce prompts but grant more autonomy, so use them only for trusted tasks.</p><div class="callout info"><div><b>Important boundary</b><p>A workspace path is not a sandbox for shell commands. Review commands and the current operating-system permissions before allowing execution.</p></div></div></div>
-  <div class="doc-section rv" id="troubleshooting"><h2>Troubleshooting</h2><table><tr><th>Symptom</th><th>What to check</th></tr><tr><td>MCP controls are disabled</td><td>Enable MCP in Connections and wait for the ready status.</td></tr><tr><td>ChatGPT cannot see Coworker</td><td>Confirm the connection configuration, tunnel status and the selected ChatGPT workspace.</td></tr><tr><td>A task appears stuck</td><td>Open Activity, inspect the pending tool call and return to the profile that owns the conversation.</td></tr></table></div>
-  <div class="doc-section rv" id="changelog"><h2>Changelog</h2><p><strong>1.0.1 — MCP restart and setup guide fixes.</strong> Fixed stale bearer-token errors after toggling MCP, cleaned up tunnel-client shutdown, fixed collapsed sidebar actions, and updated the ChatGPT Plugin setup flow.</p><p><strong>1.0.0 — First release.</strong> Coworker launches with workspaces and tasks, independent ChatGPT profiles, MCP connections, local tool activity, approval modes, light and dark themes, and guided setup.</p></div>
+  <div class="docs-header rv"><span class="eyebrow">Documentation</span><h1>Coworker documentation</h1><p class="desc">Coworker brings ChatGPT into your project workspace to read files, edit code and run commands. Choose an access mode and follow each action in the app.</p></div>
+  <div class="doc-section rv" id="overview-concepts"><h2>Core concepts</h2>
+    <table><tr><th>Concept</th><th>What it means</th></tr>
+      <tr><td>Workspace</td><td>The project folder you give Coworker access to. You can switch workspaces and tasks in the app; access permissions apply to the selected workspace.</td></tr>
+      <tr><td>Profile</td><td>An independent ChatGPT window with separate cookies. Each profile has exactly one active account.</td></tr>
+      <tr><td>Tunnel</td><td>An outbound connection between ChatGPT and Coworker's MCP server. Manage tunnel IDs and keys in Connections; use separate configurations to keep accounts apart.</td></tr></table>
+  </div>
+  <div class="doc-section rv" id="overview-path"><h2>Suggested path</h2>
+    <ol class="doc-steps"><li><b><a href="en.html?page=install">Installation</a></b> — install the app, open it and select a workspace.</li>
+      <li><b><a href="en.html?page=quickstart">Quickstart</a></b> — create your first tunnel and Coworker app in ChatGPT, then run a test tool call.</li>
+      <li><b><a href="en.html?page=profiles">Multiple accounts</a></b> — manage ChatGPT accounts and their profiles.</li>
+      <li><b><a href="en.html?page=tunnels">Multiple tunnels</a></b> — give each account its own tunnel and run them side by side.</li></ol>
+    <div class="callout info"><div><b>Version-specific guide</b><p>This web guide describes Coworker 1.0.1. If a label or control differs in your installed version, follow the status and instructions shown in the app.</p></div></div>
+  </div>
+  <div class="doc-section rv" id="install"><h2>Installation</h2>
+    <p>Coworker runs on 64-bit Windows 10/11. Install the desktop app, then set up your workspace.</p>
+    <h3>Requirements</h3><ul><li>Windows 10/11, 64-bit</li><li>About 300 MB of free disk space</li><li>A ChatGPT account permitted to use Plugin and MCP under your organization's policy</li></ul>
+    <h3>Installation steps</h3><ol class="doc-steps">
+      <li><b>Run Setup</b><p>Open <code>Coworker.Setup.1.0.1.exe</code> → Next → Install. The app installs under <code>%LOCALAPPDATA%\Programs\coworker</code> and adds Desktop and Start Menu shortcuts.</p></li>
+      <li><b>Open the app</b><p>Windows SmartScreen may warn because the app is unsigned. Verify the installer source before choosing <em>More info → Run anyway</em>.</p></li>
+      <li><b>Check Connections</b><p>Open <strong>Connections</strong>, enable MCP when needed and confirm its ready status.</p></li>
+      <li><b>Select a workspace</b><p>Point Coworker to your project folder. You can add workspaces and tasks later.</p></li></ol>
+    <h3>After installation</h3><p>Continue to <a href="en.html?page=quickstart">Quickstart</a> for the first MCP test. For several ChatGPT accounts, see <a href="en.html?page=profiles">Multiple accounts</a> and <a href="en.html?page=tunnels">Multiple tunnels</a>.</p>
+  </div>
+  <div class="doc-section rv" id="quickstart"><h2>Quickstart</h2>
+    <p>Go from installation to your first tool call in this order.</p>
+    <h3>Before you begin</h3><ul><li>Coworker is installed and open, with a project folder selected as the workspace.</li><li>Your ChatGPT account can use Plugin and configure MCP under your organization's policy.</li><li>MCP is enabled in Coworker; check its status in <strong>Connections</strong>.</li></ul>
+    <h3>1 · Create a tunnel in OpenAI Platform</h3><p>A tunnel connects ChatGPT to Coworker's MCP server. Account and organization setups may differ; see <a href="en.html?page=tunnels">Multiple tunnels</a> if you need more connections.</p>
+    <ol class="doc-steps"><li><b>Sign in to the right account</b><p>The tunnel belongs to the account that creates it. Use your primary account for the first tunnel.</p></li>
+      <li><b>Create a tunnel</b><p>Open your organization's tunnel management page → <strong>Create tunnel</strong>. Give it a recognizable name and record its Tunnel ID.</p></li>
+      <li><b>Create a Runtime API key</b><p>Open Runtime API Keys, grant only the permissions needed for the tunnel, and store the key safely.</p></li>
+      <li><b>Add it to Coworker</b><p>In <strong>Connections</strong>, add a Secure MCP Tunnel; enter its label, Tunnel ID and Runtime API key, then <strong>Save</strong>. Check that its status becomes ready.</p></li></ol>
+    <div class="callout warn"><div><b>A Runtime API key is shown once</b><p>If you lose it, create a new key in Platform and replace the saved one. The tunnel and other settings are unaffected.</p></div></div>
+    <h3>2 · Create the Coworker app in ChatGPT</h3><p>The ChatGPT app points to the MCP server at the other end of your tunnel. Create one app for each account.</p>
+    <ol class="doc-steps"><li><b>Open app creation</b><p>In ChatGPT, go to <strong>Settings → Plugin</strong>, open the <strong>plugin management page</strong>, click <strong>+</strong>, then select <strong>New app</strong>.</p></li>
+      <li><b>Fill in the details</b><p>Name it <code>Coworker</code>, choose <strong>Connection = Tunnel</strong>, then select the tunnel you created using ChatGPT's instructions.</p></li>
+      <li><b>Save the connection</b><p>Choose <strong>Create</strong> or <strong>Save</strong>. Do not share the Runtime API key in chat or source code.</p></li>
+      <li><b>Verify both ends</b><p>The Coworker tunnel row should show <strong>Running</strong>. The Coworker app should appear in ChatGPT's app list for a new chat.</p></li></ol>
+    <h3>3 · Make the first tool call</h3><ol class="doc-steps">
+      <li><b>Open ChatGPT in the app</b><p>Choose ChatGPT in the navigation bar. Start a new chat and select the <strong>Coworker</strong> app if prompted.</p></li>
+      <li><b>Send a test request</b><pre><code>Use Coworker to call workbench_status, list workspaces and tasks,
+then bind to the currently open task.</code></pre></li>
+      <li><b>Approve the action</b><p>In Ask-first mode, review the scope in Coworker's approval bar and choose <strong>Allow</strong> or <strong>Deny</strong>.</p></li>
+      <li><b>Check Coworker</b><p><strong>Activity</strong> records the tool call and time. The workspace is bound to the chat.</p></li></ol>
+  </div>
+  <div class="doc-section rv" id="workspaces"><h2>When something goes wrong</h2>
+    <table><tr><th>Symptom</th><th>Likely cause</th><th>What to do</th></tr>
+      <tr><td>ChatGPT cannot see the Coworker app</td><td>The tunnel is not running or the app is not installed in ChatGPT.</td><td>Check tunnel status in Connections and install the app again in ChatGPT.</td></tr>
+      <tr><td>Tunnel shows Error</td><td>Wrong Runtime API key, deleted tunnel, or a blocked network.</td><td>Create and enter a new key; verify that the tunnel still exists in Platform.</td></tr>
+      <tr><td>A tool call does not return</td><td>MCP is disabled or Coworker is closed.</td><td>Enable MCP in Connections and resend the request.</td></tr></table>
+    <h3>Next steps</h3><ul><li><a href="en.html?page=profiles">Multiple accounts</a> — add accounts and assign profiles.</li><li><a href="en.html?page=tunnels">Multiple tunnels</a> — one tunnel per account, running together.</li><li><a href="en.html?page=security">Security and architecture</a> — how credentials and traffic are protected.</li></ul>
+  </div>
+  <div class="doc-section rv" id="profiles"><h2>Multiple accounts</h2>
+    <p>Each profile is an independent ChatGPT window with separate cookies and exactly one active account. You can save several accounts, but each profile runs only one at a time.</p>
+    <h3>How it works</h3><table><tr><th>Concept</th><th>Meaning</th></tr>
+      <tr><td>Account</td><td>A ChatGPT email and credentials (password, 2FA) saved encrypted with Windows DPAPI.</td></tr>
+      <tr><td>Profile</td><td>An independent ChatGPT window selected from the account's profile dropdown.</td></tr>
+      <tr><td>Binding</td><td>An account-to-profile assignment. Only one account can be assigned to a profile at a time.</td></tr></table>
+    <h3>Add an account</h3><ol class="doc-steps">
+      <li><b>Open Auto-login</b><p>Use the auto-login button in the profile toolbar, or the account list in account settings.</p></li>
+      <li><b>Add an account row</b><p>Enter the ChatGPT email and password. For 2FA, also enter the <strong>TOTP secret</strong> from the setup QR code; Coworker generates an OTP during sign-in.</p></li>
+      <li><b>Choose a profile</b><p>Select a profile such as <code>ChatGPT 1</code>. If another account is assigned to it, that account immediately changes to <em>— None —</em>.</p></li>
+      <li><b>Using Google?</b><p>Click <strong>Google</strong> beside “Add to list”. Coworker opens a ChatGPT window for you to sign in manually, then adds the account after detecting the session.</p></li></ol>
+    <div class="callout warn"><div><b>An account needs a profile to sign in</b><p>If its dropdown still says <em>— None —</em>, sign-in reports an error. Assign a profile first.</p></div></div>
+    <h3>Sign in and switch accounts</h3><ol class="doc-steps">
+      <li><b>Automatic sign-in</b><p>Click sign in beside an account. Coworker opens a separate window, enters email and password, then OTP if enabled. Google accounts use a manual window instead.</p></li>
+      <li><b>Switch on the same profile</b><p>Sign account B into a profile used by account A. Coworker signs A out before signing B in.</p></li>
+      <li><b>Continue work</b><p>If Coworker can retrieve A's latest conversation, it sends that content to a new chat for B. Review the context before continuing.</p></li></ol>
+    <h3>Sign in all</h3><p><strong>Sign in all</strong> processes assigned accounts one by one, each in its own profile. If accounts share a profile, the one signed in last takes over and the other cannot stay active.</p>
+    <h3>Frequently asked questions</h3><table><tr><th>Situation</th><th>What to do</th></tr>
+      <tr><td>The old account remains signed in</td><td>Coworker detects a mismatched session and retries up to twice. If it still persists, sign in again; old cookies are cleared before the next attempt.</td></tr>
+      <tr><td>OTP repeatedly fails</td><td>Check the base32 TOTP secret from the QR code and enable Windows time synchronization.</td></tr>
+      <tr><td>Run two accounts simultaneously</td><td>Assign them to different profiles, such as ChatGPT 1 and ChatGPT 2, with separate windows and cookies.</td></tr>
+      <tr><td>Delete an account</td><td>Use the delete button beside it. Its encrypted local credentials are permanently removed.</td></tr></table>
+  </div>
+  <div class="doc-section rv" id="tunnels"><h2>Multiple tunnels</h2>
+    <p>Each ChatGPT account needs its own Secure MCP Tunnel, because a tunnel belongs to its OpenAI organization. Coworker can run multiple tunnels at once, all connecting to the same local MCP server.</p>
+    <h3>Why one tunnel per account?</h3><p>Account A cannot see account B's tunnel. Create <strong>one tunnel and one Runtime API key per account</strong>. In each account's ChatGPT, create its Coworker app through <strong>Settings → Plugin → plugin management page → + → New app</strong>, and point it at that account's tunnel.</p>
+    <table><tr><th>Component</th><th>Per account</th><th>Notes</th></tr>
+      <tr><td>Tunnel ID</td><td>Separate</td><td>Create at <code>platform.openai.com/settings/organization/tunnels</code> while signed into that account.</td></tr>
+      <tr><td>Runtime API key</td><td>Separate</td><td>Do not reuse another tunnel's key; Coworker rejects it.</td></tr>
+      <tr><td>ChatGPT Coworker app</td><td>Separate</td><td>Each account's app points to its own tunnel.</td></tr>
+      <tr><td>Destination MCP server</td><td>Shared</td><td>All tunnels lead to <code>127.0.0.1:3210</code> on your computer.</td></tr></table>
+    <h3>Add a tunnel for each account</h3><ol class="doc-steps">
+      <li><b>Open Connections</b><p>Coworker → <strong>Connections</strong> → Secure MCP Tunnel. Each row shows its label, status, Tunnel ID and delete button.</p></li>
+      <li><b>Get the second account's tunnel</b><p>Sign in as account 2, visit <code>platform.openai.com/settings/organization/tunnels</code>, create a tunnel and a Runtime API key.</p></li>
+      <li><b>Enter it in Coworker</b><p>Below the list, enter the <strong>Account name</strong>, Tunnel ID and Runtime API key, then <strong>Save</strong>.</p></li>
+      <li><b>Repeat for each account</b><p>When MCP is enabled, all enabled tunnels start together, each with its own tunnel-client process.</p></li></ol>
+    <h3>Read tunnel status</h3><table><tr><th>Status</th><th>Meaning</th></tr>
+      <tr><td>Running</td><td>The tunnel-client is connected; that account's ChatGPT can call tools.</td></tr>
+      <tr><td>Starting</td><td>The tunnel-client is establishing a connection, usually within seconds.</td></tr>
+      <tr><td>Stopped</td><td>The tunnel is valid, but MCP is off.</td></tr>
+      <tr><td>Disabled</td><td>This tunnel is disabled in its configuration.</td></tr>
+      <tr><td>Error</td><td>The key is wrong, the tunnel was deleted in Platform, or the network cannot connect. Hover over the log for details.</td></tr></table>
+    <p>The summary displays a count such as <code>2/3 running</code>. MCP logs combine all tunnels with a tunnel prefix on each entry.</p>
+    <h3>Edit or remove a tunnel</h3><ul><li><b>Rename or replace a key:</b> enter the existing Tunnel ID in the form, update the label or key, then Save. Leave the Runtime API key empty to keep the saved key.</li>
+      <li><b>Delete:</b> use the row's delete button. This removes only Coworker's configuration; the tunnel remains in OpenAI Platform.</li></ul>
+    <div class="callout danger"><div><b>Do not reuse one key for two tunnels</b><p>Coworker rejects it. A key is bound to its tunnel, and reuse could disrupt the first tunnel-client session.</p></div></div>
+  </div>
+  <div class="doc-section rv" id="security"><h2>Security and architecture</h2>
+    <p>Coworker handles real credentials and project files. This is how they are protected.</p>
+    <h3>Architecture</h3><pre><code>ChatGPT (account A) ─→ Secure Tunnel ─→ tunnel-client A ─┐
+                                                          ├─→ MCP server (127.0.0.1:3210) ─→ Workspace
+ChatGPT (account B) ─→ Secure Tunnel ─→ tunnel-client B ─┘</code></pre>
+    <p>Each ChatGPT connection reaches Coworker's MCP server through its tunnel-client. MCP operates on the selected workspace under the access mode configured in the app.</p>
+    <h3>How credentials are protected</h3><table><tr><th>Data</th><th>Stored in</th><th>Protection</th></tr>
+      <tr><td>Account password and 2FA secret</td><td>Encrypted <code>auto-login.json</code></td><td>Windows DPAPI with an <code>enc:</code> prefix; decryptable only under your Windows account.</td></tr>
+      <tr><td>Tunnel Runtime API key</td><td>Encrypted <code>settings.json</code></td><td>Windows DPAPI; copying the file to another computer does not reveal it.</td></tr>
+      <tr><td>ChatGPT session</td><td>Cookies in each profile partition</td><td>Independent profile windows keep cookies separate.</td></tr></table>
+    <h3>Approval flow</h3><ol class="doc-steps">
+      <li><b>ChatGPT calls a tool</b><p>For example, <code>workspace_edit_file</code> travels through a tunnel to the app's MCP server.</p></li>
+      <li><b>MCP checks the allowlist</b><p>The tool must be allowed. In Ask-first mode, file edits, shell commands and Git actions wait for your approval.</p></li>
+      <li><b>The app shows an approval bar</b><p>Review the diff, command and directory before anything runs.</p></li>
+      <li><b>You decide</b><p>Allow executes the operation and creates an undo checkpoint; Deny returns an error to ChatGPT so it can adjust its approach.</p></li></ol>
+    <div class="callout info"><div><b>Important boundary</b><p>A workspace path is not a sandbox for shell commands. Review commands and operating-system permissions before approving execution.</p></div></div>
+  </div>
+  <div class="doc-section rv" id="troubleshooting"><h2>What Coworker does not do</h2>
+    <ul><li>It does not store plaintext passwords, including in logs.</li><li>It does not type your Google password into a hidden window; Google sign-in is always manual.</li><li>It does not open an inbound port on your computer; tunnel-clients connect outward.</li><li>Workspace operations go through the app's MCP path. Check tunnel status, logs and network policy before using it in a sensitive environment.</li></ul>
+  </div>
+  <div class="doc-section rv" id="changelog"><h2>Changelog</h2><p>Public Coworker releases.</p>
+    <h3>1.0.1 — MCP stability and guide updates</h3><ul>
+      <li>Fixed <code>UNAUTHORIZED</code> after toggling MCP by closing sessions, tunnel-clients and the HTTP listener in order.</li>
+      <li>Prevented old tunnel-clients from sending expired bearer tokens after MCP restarts.</li>
+      <li>Fixed action labels overflowing in the collapsed sidebar.</li>
+      <li>Updated Coworker app creation to the current ChatGPT flow: <strong>Settings → Plugin → plugin management page → + → New app</strong>.</li></ul>
+    <h3>1.0.0 — Initial release</h3><ul>
+      <li>Desktop workspace and task management.</li>
+      <li>ChatGPT connected to MCP tools for reading files, editing code, running commands and Git operations.</li>
+      <li>Independent ChatGPT profiles for switching between accounts.</li>
+      <li>Ask-first, Automatic and Full access modes with Activity tracking.</li>
+      <li>Light and dark themes, in-app guidance and Vietnamese and English web documentation.</li></ul>
+  </div>
   <nav class="doc-pager"><a href="../index.html"><small>Previous</small><b>← Home</b></a><a class="next" href="en.html?page=install"><small>Next</small><b>Installation →</b></a></nav>
 </main></div>
 <script src="../assets/js/docs-navigation.js"></script><script src="../assets/js/i18n.js"></script><script src="../assets/js/site.js"></script>
