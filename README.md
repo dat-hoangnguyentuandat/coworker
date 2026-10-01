@@ -4,6 +4,8 @@
 
 <p align="center">A Windows desktop workspace for using ChatGPT with local projects through the Model Context Protocol (MCP).</p>
 
+<p align="center"><a href="https://ws-coworker.netlify.app/">Coworker website</a> · <a href="https://ws-coworkerapi.netlify.app/">CoworkerAPI endpoint gateway</a></p>
+
 Work with files, Git, and terminal commands in a task-focused interface, with visibility into tool activity and control over what runs.
 
 ## What you can do
@@ -46,6 +48,7 @@ To create a Windows installer, run `npm run dist:win` from `coworker-app/`. The 
 ## Documentation and support
 
 - [Website](https://ws-coworker.netlify.app/)
+- [CoworkerAPI — OpenAI-compatible and Anthropic-compatible gateway](https://ws-coworkerapi.netlify.app/)
 - [User documentation](https://ws-coworker.netlify.app/docs/en.html)
 - [Multiple profiles](https://ws-coworker.netlify.app/docs/en.html?page=profiles)
 - [MCP and tunnels](https://ws-coworker.netlify.app/docs/en.html?page=tunnels)
